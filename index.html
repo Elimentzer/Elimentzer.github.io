@@ -1,201 +1,342 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FrannyHub Boosting - Affordable & Trusted</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FrannyHub Boosting</title>
+<style>
+  :root {
+    --main-bg: #1a0d2e;
+    --card-bg: #26133f;
+    --accent-blue: #38bdf8;
+    --accent-purple: #a855f7;
+    --text-main: #ffffff;
+    --text-highlight: #facc15;
+    --nav-hover-bg: #3b2780;
+    --red-fill: #b22222;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a0d2e 0%, #120a26 100%);
+    color: var(--text-main);
+    line-height: 1.6;
+  }
+
+  nav {
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  nav a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    margin: 0 25px;
+    font-size: 20px;
+    font-weight: 700;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: var(--accent-purple);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+  nav a:hover,
+  nav a.active {
+    color: var(--accent-purple);
+  }
+  nav a:hover::after,
+  nav a.active::after {
+    width: 100%;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Banner with red fill background */
+  header.banner {
+    position: relative;
+    height: 160px;
+    background: linear-gradient(90deg, #8B0000, #b22222);
+    color: var(--text-highlight);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(178, 34, 34, 0.8);
+    font-weight: 900;
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    user-select: none;
+    margin-bottom: 50px;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  /* Horizontal marquee container */
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    padding: 15px 0;
+    margin-top: 30px;
+    user-select: none;
+  }
+
+  /* Marquee content */
+  .marquee {
+    display: flex;
+    gap: 60px;
+    animation: marqueeAnim 12s linear infinite alternate;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff4c4c;
+    text-shadow:
+      0 0 6px #ff0000,
+      0 0 10px #ff4c4c;
+  }
+
+  @keyframes marqueeAnim {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50%)); }
+  }
+
+  h1 {
+    margin-bottom: 15px;
+    color: #ff4c4c;
+    text-shadow:
+      0 0 10px #ff0000,
+      0 0 15px #b22222;
+  }
+
+  section {
+    margin-bottom: 60px;
+  }
+
+  /* Keep other styles (like product lists, buy buttons) same as before */
+  .highlight {
+    color: var(--text-highlight);
+    font-weight: 700;
+  }
+
+  .buy-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 28px;
+    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    color: #000;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(168,85,247,0.6);
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .buy-button:hover {
+    background: linear-gradient(90deg, #a855f7, #38bdf8);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(56,189,248,0.9);
+  }
+
+  ul.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.product-list li {
+    background: linear-gradient(90deg, #120a26 0%, #26133f 100%);
+    margin-bottom: 18px;
+    padding: 18px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  ul.product-list li:hover {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+  }
+  ul.product-list li strong {
+    font-size: 1.1rem;
+    color: var(--accent-blue);
+  }
+  ul.product-list li small {
+    display: block;
+    margin-top: 4px;
+    color: #aaa;
+    font-style: italic;
+  }
+
+  @media (max-width: 720px) {
+    nav a {
+      margin: 10px 15px;
+      font-size: 17px;
     }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at top left, #0f172a, #020617);
-      color: white;
-    }
-    .price-box {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .price-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-    }
-    .fade-in {
-      animation: fadeIn 1.5s ease forwards;
-      opacity: 0;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-    .pulse-slow {
-      animation: pulse 3s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-  </style>
+  }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet" />
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center px-4 py-10 space-y-12">
+<body>
 
-  <header class="text-center animate-pulse pulse-slow max-w-4xl mx-auto">
-    <h1 class="text-5xl font-extrabold text-cyan-400 drop-shadow-lg mb-2">🚀 FrannyHub Boosting</h1>
-    <p class="text-xl text-gray-300 italic max-w-3xl mx-auto">Cheap. Fast. Trusted. All Platforms Welcome.</p>
-  </header>
+<header class="banner">
+  Best Boosting Service
+</header>
 
-  <section class="max-w-5xl mx-auto text-left space-y-6 fade-in">
-    <h2 class="text-3xl font-bold text-cyan-300 mb-4">🌟 Why Choose FrannyHub for Your Boosting Needs?</h2>
-    <p class="text-gray-300 leading-relaxed">
-      At <strong>FrannyHub</strong>, we take pride in offering the best boosting services on the market — combining <strong>affordable prices</strong>, <strong>fast delivery</strong>, and <strong>top-notch customer support</strong> to make your experience smooth and satisfying. Whether you’re climbing ranks from Copper to Champion or just want a helping hand, we’ve got you covered!
-    </p>
-    <h3 class="text-2xl font-semibold text-cyan-400">💰 Transparent & Competitive Prices</h3>
-    <p class="text-gray-300 leading-relaxed">
-      We believe boosting should be accessible without breaking the bank. Our clear tiered pricing means you always know what you’re paying for — no hidden fees or surprises. From just <strong>$5</strong> to move from Copper to Bronze, all the way up to <strong>$30</strong> for Diamond to Champion, every price point delivers excellent value and consistent results.
-    </p>
-    <h3 class="text-2xl font-semibold text-cyan-400">✨ Stunning Animated Experience</h3>
-    <p class="text-gray-300 leading-relaxed">
-      We didn’t stop at great service — our website is designed to impress. With <strong>dynamic animations, smooth hover effects, and vibrant colors</strong>, the entire browsing experience feels modern and professional. This helps you navigate easily and pick exactly what you need while enjoying the sleek vibe that matches our dedication to quality.
-    </p>
-    <h3 class="text-2xl font-semibold text-cyan-400">💳 Multiple Payment Options for Your Convenience</h3>
-    <p class="text-gray-300 leading-relaxed">
-      Pay the way you want! FrannyHub accepts:
-      <ul class="list-disc list-inside">
-        <li>CashApp (<code>$$mvpmeast2</code>)</li>
-        <li>PayPal (coming soon!)</li>
-        <li>Robux (send to <code>dripgodcxltures</code>)</li>
-        <li>Apple Pay (instructions provided)</li>
-      </ul>
-      No matter your platform, we make transactions simple and secure.
-    </p>
-    <h3 class="text-2xl font-semibold text-cyan-400">🛡️ Trusted & Reliable</h3>
-    <p class="text-gray-300 leading-relaxed">
-      We value your trust above all. Our team is committed to protecting your privacy and delivering each boost on time. Thousands of happy clients have already ranked up with FrannyHub — and you can too!
-    </p>
-    <h3 class="text-2xl font-semibold text-cyan-400">📋 Easy Booking & Support</h3>
-    <p class="text-gray-300 leading-relaxed">
-      Our user-friendly booking form lets you submit all your boosting details in seconds. Plus, if you have questions or need assistance, join our active Discord community via the invite link — friendly support is always just a click away.
-    </p>
-    <p class="text-cyan-300 font-semibold text-lg">
-      Join the FrannyHub family today and experience boosting the way it was meant to be: <em>affordable, trustworthy, and downright awesome</em>. Get your rank up without the hassle, and let us handle the grind for you!
-    </p>
-  </section>
+<nav>
+  <a href="#home" class="active">🏠 Home</a>
+  <a href="#reviews">⭐ Reviews</a>
+  <a href="#prices">💵 Prices</a>
+  <a href="#buy-scripts">🧠 Buy Scripts Here</a>
+  <a href="#terms">📜 Terms</a>
+</nav>
 
-  <section class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
-    <!-- Price Cards -->
-    <div class="price-box bg-cyan-900 p-6 rounded-2xl text-center shadow-lg hover:shadow-cyan-400/70">
-      <h2 class="text-xl font-bold text-cyan-300">Copper ➜ Bronze</h2>
-      <p class="text-2xl mt-2 mb-4 text-white">$5</p>
-      <div class="flex justify-center gap-2 flex-wrap">
-        <a href="https://cash.app/$$mvpmeast2" target="_blank" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded transition">CashApp</a>
-        <button onclick="alert('Send Robux to: dripgodcxltures');" class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded transition">Robux</button>
-        <button onclick="alert('DM us on Discord or Apple Pay instructions will be provided.');" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded transition">Apple Pay</button>
-        <button onclick="alert('PayPal not available yet');" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">PayPal</button>
-      </div>
-    </div>
-    <div class="price-box bg-purple-900 p-6 rounded-2xl text-center shadow-lg hover:shadow-purple-400/70">
-      <h2 class="text-xl font-bold text-purple-300">Bronze ➜ Silver</h2>
-      <p class="text-2xl mt-2 mb-4 text-white">$8</p>
-      <div class="flex justify-center gap-2 flex-wrap">
-        <a href="https://cash.app/$$mvpmeast2" target="_blank" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded transition">CashApp</a>
-        <button onclick="alert('Send Robux to: dripgodcxltures');" class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded transition">Robux</button>
-        <button onclick="alert('DM us on Discord or Apple Pay instructions will be provided.');" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded transition">Apple Pay</button>
-        <button onclick="alert('PayPal not available yet');" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">PayPal</button>
-      </div>
-    </div>
-    <div class="price-box bg-indigo-900 p-6 rounded-2xl text-center shadow-lg hover:shadow-indigo-400/70">
-      <h2 class="text-xl font-bold text-indigo-300">Silver ➜ Gold</h2>
-      <p class="text-2xl mt-2 mb-4 text-white">$10</p>
-      <div class="flex justify-center gap-2 flex-wrap">
-        <a href="https://cash.app/$$mvpmeast2" target="_blank" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded transition">CashApp</a>
-        <button onclick="alert('Send Robux to: dripgodcxltures');" class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded transition">Robux</button>
-        <button onclick="alert('DM us on Discord or Apple Pay instructions will be provided.');" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded transition">Apple Pay</button>
-        <button onclick="alert('PayPal not available yet');" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">PayPal</button>
-      </div>
-    </div>
-    <div class="price-box bg-emerald-800 p-6 rounded-2xl text-center shadow-lg hover:shadow-emerald-400/70">
-      <h2 class="text-xl font-bold text-emerald-300">Gold ➜ Platinum</h2>
-      <p class="text-2xl mt-2 mb-4 text-white">$15</p>
-      <div class="flex justify-center gap-2 flex-wrap">
-        <a href="https://cash.app/$mvpmeast2" target="_blank" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded transition">CashApp</a>
-        <button onclick="alert('Send Robux to: dripgodcxltures');" class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded transition">Robux</button>
-        <button onclick="alert('DM us on Discord or Apple Pay instructions will be provided.');" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded transition">Apple Pay</button>
-        <button onclick="alert('PayPal not available yet');" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">PayPal</button>
-      </div>
-    </div>
-    <div class="price-box bg-rose-900 p-6 rounded-2xl text-center shadow-lg hover:shadow-rose-400/70">
-      <h2 class="text-xl font-bold text-rose-300">Platinum ➜ Diamond</h2>
-      <p class="text-2xl mt-2 mb-4 text-white">$20</p>
-      <div class="flex justify-center gap-2 flex-wrap">
-        <a href="https://cash.app/$$mvpmeast2" target="_blank" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded transition">CashApp</a>
-        <button onclick="alert('Send Robux to: dripgodcxltures');" class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded transition">Robux</button>
-        <button onclick="alert('DM us on Discord or Apple Pay instructions will be provided.');" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded transition">Apple Pay</button>
-        <button onclick="alert('PayPal not available yet');" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">PayPal</button>
-      </div>
-    </div>
-    <div class="price-box bg-yellow-900 p-6 rounded-2xl text-center shadow-lg hover:shadow-yellow-400/70">
-      <h2 class="text-xl font-bold text-yellow-300">Diamond ➜ Champion</h2>
-      <p class="text-2xl mt-2 mb-4 text-white">$30</p>
-      <div class="flex justify-center gap-2 flex-wrap">
-        <a href="https://cash.app/$$mvpmeast2" target="_blank" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded transition">CashApp</a>
-        <button onclick="alert('Send Robux to: dripgodcxltures');" class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded transition">Robux</button>
-        <button onclick="alert('DM us on Discord or Apple Pay instructions will be provided.');" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded transition">Apple Pay</button>
-        <button onclick="alert('PayPal not available yet');" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">PayPal</button>
-      </div>
-    </div>
-  </section>
+<main>
 
-  <section class="mt-12 max-w-3xl w-full bg-gray-800 p-8 rounded-xl shadow-lg fade-in">
-    <h2 class="text-2xl font-bold text-cyan-300 mb-6 text-center">📋 Boosting Request Form</h2>
-    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Form submitted! We will contact you soon.');">
-      <input
-        class="w-full p-3 rounded bg-gray-900 border border-gray-600 text-white placeholder-gray-400"
-        type="text"
-        placeholder="Your Discord Username (e.g. Elijah#1234)"
-        required
-      />
-      <input
-        class="w-full p-3 rounded bg-gray-900 border border-gray-600 text-white placeholder-gray-400"
-        type="text"
-        placeholder="Platform (PC, Xbox, PS)"
-        required
-      />
-      <input
-        class="w-full p-3 rounded bg-gray-900 border border-gray-600 text-white placeholder-gray-400"
-        type="text"
-        placeholder="Current Rank ➜ Desired Rank (e.g. Silver ➜ Gold)"
-        required
-      />
-      <select class="w-full p-3 rounded bg-gray-900 border border-gray-600 text-white" required>
-        <option value="">Select Payment Method</option>
-        <option>CashApp</option>
-        <option>PayPal</option>
-        <option>Robux</option>
-        <option>Apple Pay</option>
-      </select>
-      <button
-        type="submit"
-        class="w-full bg-cyan-600 hover:bg-cyan-700 text-white p-3 rounded font-semibold transition"
-      >
-        Submit
-      </button>
-    </form>
-  </section>
+<section id="home">
+  <h1>We Provide What People Want</h1>
 
-  <footer class="text-center mt-16 text-gray-400">
-    <p>
-      💬 Need help? Join our
-      <a href="https://discord.gg/eGbDs42Q" target="_blank" class="text-cyan-400 underline hover:text-cyan-200"
-        >Discord</a
-      >
+  <div class="marquee-container" aria-label="Key service features marquee">
+    <div class="marquee" aria-live="polite" role="marquee">
+      <div>Instant Delivery</div>
+      <div>Easy to Use</div>
+      <div>Good Support</div>
+      <div>Instant Delivery</div>
+      <div>Easy to Use</div>
+      <div>Good Support</div>
+    </div>
+  </div>
+
+  <p style="margin-top: 35px;">
+    Your #1 source for elite <span class="highlight">boosting services</span> and private <span class="highlight">gaming scripts</span>.
+  </p>
+
+  <p><strong>CashApp:</strong> <span class="highlight">$mvpmeast2</span></p>
+  <p><strong>Robux:</strong> <span class="highlight">dripgodcxltures</span></p>
+</section>
+
+<section id="reviews">
+  <h2>⭐ Customer Reviews</h2>
+  <div style="max-width: 800px; margin: 0 auto;">
+    <p>“Fast and legit. Got boosted within hours!” – <em>@Spaz</em></p>
+    <p>“Scripts worked flawlessly. Instant delivery.” – <em>@Zay</em></p>
+    <p>“Best boosting service out there. Will use again!” – <em>@Ghost</em></p>
+  </div>
+</section>
+
+<section id="prices">
+  <h2>💵 Prices</h2>
+  <ul class="product-list">
+    <li>
+      🔹 <strong>Copper → Bronze</strong> – <span class="highlight">$5</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li>
+      🔹 <strong>Bronze → Silver</strong> – <span class="highlight">$8</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li>
+      🔹 <strong>Silver → Gold</strong> – <span class="highlight">$12</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li>
+      🔹 <strong>Gold → Platinum</strong> – <span class="highlight">$15</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li>
+      🔹 <strong>Platinum → Diamond</strong> – <span class="highlight">$20</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li>
+      🔹 <strong>Champion Boost</strong> – <span class="highlight">$35+</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li>
+      🔹 <strong>R6 Boost (per game)</strong> – <span class="highlight">$1</span><br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+    <li style="background: linear-gradient(90deg, #26133f, #3a1b70); padding: 20px; border-radius: 12px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.7); margin-top: 30px;">
+      🎮 <strong>Game Wins Boost</strong><br>
+      We also boost for each game played at <span class="highlight">$1 per game</span>.<br>
+      If you win, great! If you lose, you <strong>get your money back</strong> — guaranteed.<br>
+      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+    </li>
+  </ul>
+  <p style="margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    ⚡ Faster delivery available upon request. Open a ticket or DM to confirm time and pricing.
+  </p>
+</section>
+
+<section id="buy-scripts">
+  <h2>🧠 Buy Scripts Here</h2>
+  <div style="max-width: 600px; margin: 0 auto;">
+    <p style="font-size: 28px; font-weight: 900; color: var(--accent-purple); text-shadow: 0 0 7px rgba(168, 85, 247, 0.9); margin-bottom: 12px;">
+      🚧 Coming Soon 🚧
     </p>
-    <p class="mt-3 text-sm">© 2025 FrannyHub Boosting</p>
-  </footer>
+    <p>Our private script shop is launching soon. Stay tuned for the best undetected scripts for Fortnite, R6, and more!</p>
+  </div>
+</section>
+
+<section id="terms">
+  <h2>📜 Terms of Service</h2>
+  <div style="max-width: 700px; margin: 0 auto;">
+    <p>All sales are final. No refunds unless explicitly offered before purchase.</p>
+    <p>Chargebacks or fraud attempts will result in a ban from all services.</p>
+    <p>By purchasing, you agree to our terms and acknowledge all risks.</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // Smooth scroll + active nav highlight
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  function changeActive() {
+    let index = sections.length;
+
+    while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+    navLinks.forEach(link => link.classList.remove('active'));
+    navLinks[index].classList.add('active');
+  }
+
+  changeActive();
+  window.addEventListener('scroll', changeActive);
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({behavior: 'smooth'});
+    });
+  });
+</script>
+
 </body>
 </html>
