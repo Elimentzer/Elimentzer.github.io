@@ -1,206 +1,274 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FrannyHub Boosting</title>
-<style>
-  :root {
-    --main-bg: #1a0d2e;
-    --card-bg: #26133f;
-    --accent-blue: #38bdf8;
-    --accent-purple: #a855f7;
-    --text-main: #ffffff;
-    --text-highlight: #facc15;
-    --nav-hover-bg: #3b2780;
-    --red-fill: #b22222;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a0d2e 0%, #120a26 100%);
-    color: var(--text-main);
-    line-height: 1.6;
-  }
-
-  nav {
-    background-color: var(--card-bg);
-    display: flex;
-    justify-content: center;
-    padding: 15px 0;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-
-  nav a {
-    color: var(--accent-blue);
-    text-decoration: none;
-    margin: 0 25px;
-    font-size: 20px;
-    font-weight: 700;
-    position: relative;
-    padding: 8px 0;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
-  nav a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 3px;
-    background: var(--accent-purple);
-    left: 0;
-    bottom: 0;
-    transition: width 0.3s ease;
-    border-radius: 2px;
-  }
-  nav a:hover,
-  nav a.active {
-    color: var(--accent-purple);
-  }
-  nav a:hover::after,
-  nav a.active::after {
-    width: 100%;
-  }
-
-  main {
-    max-width: 1200px;
-    margin: 0 auto 50px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Banner with red fill background */
-  header.banner {
-    position: relative;
-    height: 160px;
-    background: linear-gradient(90deg, #8B0000, #b22222);
-    color: var(--text-highlight);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 0 25px rgba(178, 34, 34, 0.8);
-    font-weight: 900;
-    font-size: 36px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    user-select: none;
-    margin-bottom: 50px;
-    font-family: 'Orbitron', sans-serif;
-  }
-
-  /* Horizontal marquee container */
-  .marquee-container {
-    width: 100%;
-    overflow: hidden;
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-    padding: 15px 0;
-    margin-top: 30px;
-    user-select: none;
-  }
-
-  /* Marquee content */
-  .marquee {
-    display: flex;
-    gap: 60px;
-    animation: marqueeAnim 12s linear infinite alternate;
-    font-size: 24px;
-    font-weight: 700;
-    color: #ff4c4c;
-    text-shadow:
-      0 0 6px #ff0000,
-      0 0 10px #ff4c4c;
-  }
-
-  @keyframes marqueeAnim {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50%)); }
-  }
-
-  h1 {
-    margin-bottom: 15px;
-    color: #ff4c4c;
-    text-shadow:
-      0 0 10px #ff0000,
-      0 0 15px #b22222;
-  }
-
-  section {
-    margin-bottom: 60px;
-  }
-
-  /* Keep other styles (like product lists, buy buttons) same as before */
-  .highlight {
-    color: var(--text-highlight);
-    font-weight: 700;
-  }
-
-  .buy-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 28px;
-    background: linear-gradient(90deg, #38bdf8, #a855f7);
-    color: #000;
-    font-weight: 700;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(168,85,247,0.6);
-    transition: background 0.4s ease, color 0.4s ease;
-  }
-  .buy-button:hover {
-    background: linear-gradient(90deg, #a855f7, #38bdf8);
-    color: #fff;
-    box-shadow: 0 6px 20px rgba(56,189,248,0.9);
-  }
-
-  ul.product-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  ul.product-list li {
-    background: linear-gradient(90deg, #120a26 0%, #26133f 100%);
-    margin-bottom: 18px;
-    padding: 18px 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
-    transition: box-shadow 0.3s ease;
-  }
-  ul.product-list li:hover {
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-  }
-  ul.product-list li strong {
-    font-size: 1.1rem;
-    color: var(--accent-blue);
-  }
-  ul.product-list li small {
-    display: block;
-    margin-top: 4px;
-    color: #aaa;
-    font-style: italic;
-  }
-
-  @media (max-width: 720px) {
-    nav a {
-      margin: 10px 15px;
-      font-size: 17px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FrannyHub Boosting</title>
+  <style>
+    :root {
+      --main-bg: #1a0d2e;
+      --card-bg: #26133f;
+      --accent-blue: #38bdf8;
+      --accent-purple: #a855f7;
+      --text-main: #ffffff;
+      --text-highlight: #facc15;
+      --nav-hover-bg: #3b2780;
+      --red-fill-start: #8B0000;
+      --red-fill-end: #b22222;
+      --glow-red: #ff3b3b;
     }
-  }
 
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet" />
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a0d2e 0%, #120a26 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background-color: var(--card-bg);
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      margin: 0 25px;
+      font-size: 20px;
+      font-weight: 700;
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--accent-purple);
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    nav a:hover,
+    nav a.active {
+      color: var(--accent-purple);
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+      flex-grow: 1;
+    }
+
+    /* Banner with red fill background */
+    header.banner {
+      position: relative;
+      height: 160px;
+      background: linear-gradient(90deg, var(--red-fill-start), var(--red-fill-end));
+      color: var(--text-highlight);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(178, 34, 34, 0.8);
+      font-weight: 900;
+      font-size: 38px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      user-select: none;
+      margin-bottom: 50px;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow:
+        0 0 8px var(--glow-red),
+        0 0 15px var(--glow-red),
+        0 0 20px #ff2222,
+        0 0 25px var(--glow-red);
+    }
+
+    /* Horizontal marquee container */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      padding: 15px 0;
+      margin-top: 30px;
+      user-select: none;
+      position: relative;
+    }
+
+    /* Marquee content */
+    .marquee {
+      display: flex;
+      gap: 60px;
+      animation: marqueeAnim 15s linear infinite alternate;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--glow-red);
+      text-shadow:
+        0 0 6px #ff0000,
+        0 0 12px #ff4c4c;
+      will-change: transform;
+    }
+
+    @keyframes marqueeAnim {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50%)); }
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      color: var(--glow-red);
+      text-shadow:
+        0 0 10px #ff0000,
+        0 0 15px #b22222;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    .highlight {
+      color: var(--text-highlight);
+      font-weight: 700;
+    }
+
+    .buy-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      color: #000;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(168,85,247,0.6);
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+    .buy-button:hover {
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(56,189,248,0.9);
+    }
+
+    ul.product-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.product-list li {
+      background: linear-gradient(90deg, #120a26 0%, #26133f 100%);
+      margin-bottom: 18px;
+      padding: 18px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    ul.product-list li:hover {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+    }
+    ul.product-list li strong {
+      font-size: 1.1rem;
+      color: var(--accent-blue);
+    }
+    ul.product-list li small {
+      display: block;
+      margin-top: 4px;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Discord big button */
+    .discord-button {
+      display: block;
+      width: 280px;
+      margin: 40px auto 60px;
+      padding: 16px 0;
+      background: #7289da;
+      color: #fff;
+      font-weight: 900;
+      font-size: 22px;
+      text-align: center;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow:
+        0 0 12px #7289da,
+        0 0 25px #99aaff88;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .discord-button:hover {
+      background: #5b6eae;
+      box-shadow:
+        0 0 18px #99aaff,
+        0 0 35px #99aaffcc;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      color: #bbb;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 14px;
+      box-shadow: inset 0 1px 5px #0008;
+    }
+
+    footer a {
+      color: var(--accent-purple);
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 720px) {
+      nav a {
+        margin: 10px 15px;
+        font-size: 17px;
+      }
+      .discord-button {
+        width: 80%;
+        font-size: 20px;
+      }
+      .marquee {
+        font-size: 20px;
+        gap: 40px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -226,18 +294,32 @@
       <div>Instant Delivery</div>
       <div>Easy to Use</div>
       <div>Good Support</div>
+      <div>Trusted & Secure</div>
+      <div>24/7 Availability</div>
+      <div>Safe & Reliable</div>
       <div>Instant Delivery</div>
       <div>Easy to Use</div>
       <div>Good Support</div>
+      <div>Trusted & Secure</div>
+      <div>24/7 Availability</div>
+      <div>Safe & Reliable</div>
     </div>
   </div>
 
-  <p style="margin-top: 35px;">
-    Your #1 source for elite <span class="highlight">boosting services</span> and private <span class="highlight">gaming scripts</span>.
+  <p style="margin-top: 35px; max-width: 700px; margin-left:auto; margin-right:auto;">
+    Your #1 source for elite <span class="highlight">boosting services</span> and private <span class="highlight">gaming scripts</span>. Fast, secure, and trusted by many satisfied customers worldwide.
   </p>
 
-  <p><strong>CashApp:</strong> <span class="highlight">$mvpmeast2</span></p>
-  <p><strong>Robux:</strong> <span class="highlight">dripgodcxltures</span></p>
+  <p style="text-align: center; font-weight: 700; font-size: 18px; margin-top: 18px;">
+    <strong>Payment Methods:</strong>  
+    <span style="color: var(--text-highlight)">$mvpmeast2 (CashApp)</span> | 
+    <span style="color: var(--text-highlight)">dripgodcxltures (Robux)</span>
+  </p>
+
+  <a href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer" class="discord-button" aria-label="Join our Discord server">
+    Join Our Discord
+  </a>
+
 </section>
 
 <section id="reviews">
@@ -254,37 +336,37 @@
   <ul class="product-list">
     <li>
       🔹 <strong>Copper → Bronze</strong> – <span class="highlight">$5</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li>
       🔹 <strong>Bronze → Silver</strong> – <span class="highlight">$8</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li>
       🔹 <strong>Silver → Gold</strong> – <span class="highlight">$12</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li>
       🔹 <strong>Gold → Platinum</strong> – <span class="highlight">$15</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li>
       🔹 <strong>Platinum → Diamond</strong> – <span class="highlight">$20</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li>
       🔹 <strong>Champion Boost</strong> – <span class="highlight">$35+</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li>
       🔹 <strong>R6 Boost (per game)</strong> – <span class="highlight">$1</span><br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
     <li style="background: linear-gradient(90deg, #26133f, #3a1b70); padding: 20px; border-radius: 12px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.7); margin-top: 30px;">
       🎮 <strong>Game Wins Boost</strong><br>
       We also boost for each game played at <span class="highlight">$1 per game</span>.<br>
       If you win, great! If you lose, you <strong>get your money back</strong> — guaranteed.<br>
-      <a class="buy-button" href="https://discord.gg/eGbDs42Q" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <a class="buy-button" href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Buy Now</a>
     </li>
   </ul>
   <p style="margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
@@ -312,6 +394,15 @@
 </section>
 
 </main>
+
+<footer>
+  <p>© 2025 FrannyHub Boosting | Contact: <a href="mailto:support@frannyhub.com">support@frannyhub.com</a></p>
+  <p>
+    <a href="https://discord.gg/HAp34UxSUn" target="_blank" rel="noopener noreferrer">Discord</a> | 
+    <a href="https://cash.app/$mvpmeast2" target="_blank" rel="noopener noreferrer">CashApp</a> | 
+    <a href="https://www.roblox.com/users/dripgodcxltures/profile" target="_blank" rel="noopener noreferrer">Robux Profile</a>
+  </p>
+</footer>
 
 <script>
   // Smooth scroll + active nav highlight
